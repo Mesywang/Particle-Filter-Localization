@@ -1,0 +1,627 @@
+<?xml version="1.0"?>
+<robot name="my_robot">
+
+  <material name="blue">
+    <color rgba="0.1 0.1 0.75 0.9"/>
+  </material>
+  <material name="battery_blue">
+    <color rgba="0.12 0.564 1 0.9"/>
+  </material>
+  <material name="red">
+    <color rgba="0.8 0 0 1.0"/>
+  </material>
+  <material name="green">
+    <color rgba="0.04 0.64 0.27 1.0"/>
+  </material>
+  <material name="pi_green">
+    <color rgba="0 0.545 0.271 0.9"/>
+  </material>
+  <material name="black">
+    <color rgba="0.1 0.1 0.1 0.9"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1.0"/>
+  </material>
+  <material name="panel_color">
+    <color rgba="0.25 0.25 0.25 0.8"/>
+  </material>
+  <material name="wheel_color">
+    <color rgba="0.1 0.1 0.1 1.0"/>
+  </material>
+  <material name="motor_color">
+    <color rgba="0.4 0.4 0.4 1.0"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.005" radius="0.16"/>
+      </geometry>
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
+      <material name="panel_color"/>
+    </visual>
+    <inertial>
+      <mass value="3"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+  </link>
+
+  <!--<link name="base_footprint">
+    <visual>
+      <geometry>
+        <box size="0.005 0.005 0.005"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+  <joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.058"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>-->
+
+  <link name="drop_sensor">
+    <visual>
+      <geometry>
+        <box size="0.007 0.015 0.006"/>
+      </geometry>
+      <material name="balck"/>
+    </visual>
+  </link>
+  <joint name="base_to_dropSensor" type="fixed">
+    <origin xyz="0.155 0 -0.006"/>
+    <parent link="base_link"/>
+    <child link="drop_sensor"/>
+  </joint>
+
+  <link name="arduino_board">
+    <visual>
+      <geometry>
+        <box size="0.11 0.06 0.005"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+  </link>
+  <joint name="base_to_arduino" type="fixed">
+    <origin xyz="0 0 0.005"/>
+    <parent link="base_link"/>
+    <child link="arduino_board"/>
+  </joint>
+
+  <link name="A_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.025" radius="0.029"/>
+      </geometry>
+      <material name="wheel_color"/>
+    </visual>
+  </link>
+  <joint name="base_to_A_wheel" type="continuous">
+    <origin rpy="1.57079 0 0.5236" xyz="0.08725 -0.1511 -0.029"/>
+    <parent link="base_link"/>
+    <child link="A_wheel"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="A_motor">
+    <visual>
+      <geometry>
+        <cylinder length="0.12" radius="0.015"/>
+      </geometry>
+      <material name="motor_color"/>
+    </visual>
+  </link>
+  <joint name="wheel_to_A_motor" type="fixed">
+    <origin xyz="0 0 -0.075"/>
+    <parent link="A_wheel"/>
+    <child link="A_motor"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="B_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.025" radius="0.029"/>
+      </geometry>
+      <material name="wheel_color"/>
+    </visual>
+  </link>
+  <joint name="base_to_B_wheel" type="continuous">
+    <origin rpy="1.57075 0 -0.5236" xyz="0.08725 0.1511 -0.029"/>
+    <parent link="base_link"/>
+    <child link="B_wheel"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="B_motor">
+    <visual>
+      <geometry>
+        <cylinder length="0.12" radius="0.015"/>
+      </geometry>
+      <material name="motor_color"/>
+    </visual>
+  </link>
+  <joint name="wheel_to_B_motor" type="fixed">
+    <origin xyz="0 0 0.075"/>
+    <parent link="B_wheel"/>
+    <child link="B_motor"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="C_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.025" radius="0.029"/>
+      </geometry>
+      <material name="wheel_color"/>
+    </visual>
+  </link>
+  <joint name="base_to_C_wheel" type="continuous">
+    <origin rpy="1.57075 0 1.57" xyz="-0.1745 0 -0.029"/>
+    <parent link="base_link"/>
+    <child link="C_wheel"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  <link name="C_motor">
+    <visual>
+      <geometry>
+        <cylinder length="0.12" radius="0.015"/>
+      </geometry>
+      <material name="motor_color"/>
+    </visual>
+  </link>
+  <joint name="wheel_to_C_motor" type="fixed">
+    <origin xyz="0 0 0.075"/>
+    <parent link="C_wheel"/>
+    <child link="C_motor"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="A_pillar">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <material name="motor_color"/>
+    </visual>
+  </link>
+  <joint name="base_to_A_pillar" type="fixed">
+      <origin xyz="0.065 -0.1126 0.025"/>
+    <parent link="base_link"/>
+    <child link="A_pillar"/>
+  </joint>
+  <link name="B_pillar">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <material name="motor_color"/>
+    </visual>
+  </link>
+  <joint name="base_to_B_pillar" type="fixed">
+      <origin xyz="0.065 0.1126 0.025"/>
+    <parent link="base_link"/>
+    <child link="B_pillar"/>
+  </joint>
+  <link name="C_pillar">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <material name="motor_color"/>
+    </visual>
+  </link>
+  <joint name="base_to_C_pillar" type="fixed">
+      <origin xyz="-0.135 0 0.025"/>
+    <parent link="base_link"/>
+    <child link="C_pillar"/>
+  </joint>
+
+  <link name="B_pannel" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.004" radius="0.17"/>
+      </geometry>
+      <material name="panel_color"/>
+    </visual>
+  </link>
+  <joint name="base_to_B_pannel" type="fixed">
+    <origin xyz="0 0 0.05"/>
+    <parent link="base_link"/>
+    <child link="B_pannel"/>
+  </joint>
+
+  <link name="battery" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.15 0.135 0.04"/>
+      </geometry>
+      <material name="battery_blue"/>
+    </visual>
+  </link>
+  <joint name="battery_joint" type="fixed">
+    <origin xyz="0 0 0.022"/>
+    <parent link="B_pannel"/>
+    <child link="battery"/>
+  </joint>
+
+  <link name="A_infrared_sensor" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.03 0.015 0.015"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="Bpannel_to_A_sensor" type="fixed">
+    <origin rpy="0 0 0.5236" xyz="0.08 -0.1386 0.008"/>
+    <parent link="B_pannel"/>
+    <child link="A_infrared_sensor"/>
+  </joint>
+  <link name="B_infrared_sensor" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.015 0.03 0.015"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="Bpannel_to_B_sensor" type="fixed">
+    <origin xyz="0.16 0 0.008"/>
+    <parent link="B_pannel"/>
+    <child link="B_infrared_sensor"/>
+  </joint>
+  <link name="C_infrared_sensor" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.03 0.015 0.015"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="Bpannel_to_C_sensor" type="fixed">
+    <origin rpy="0 0 -0.5236" xyz="0.08 0.1386 0.008"/>
+    <parent link="B_pannel"/>
+    <child link="C_infrared_sensor"/>
+  </joint>
+
+  <link name="white_A_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.002"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+  <joint name="B_pannel_to_white_A_pillar" type="fixed">
+    <origin xyz="0.093 -0.087 0.026"/>
+    <parent link="B_pannel"/>
+    <child link="white_A_pillar"/>
+  </joint>
+  <link name="white_B_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.002"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+  <joint name="B_pannel_to_white_B_pillar" type="fixed">
+    <origin xyz="0.093 0.087 0.026"/>
+    <parent link="B_pannel"/>
+    <child link="white_B_pillar"/>
+  </joint>
+  <link name="white_C_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.002"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+  <joint name="B_pannel_to_white_C_pillar" type="fixed">
+    <origin xyz="-0.088 0.09 0.026"/>
+    <parent link="B_pannel"/>
+    <child link="white_C_pillar"/>
+  </joint>
+  <link name="white_D_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.002"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+  <joint name="B_pannel_to_white_D_pillar" type="fixed">
+    <origin xyz="-0.088 -0.09 0.026"/>
+    <parent link="B_pannel"/>
+    <child link="white_D_pillar"/>
+  </joint>
+
+  <link name="Pi_pannel" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.21 0.20 0.002"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="pi_pannel_to_B_pannel" type="fixed">
+    <origin xyz="0 0 0.05"/>
+    <parent link="B_pannel"/>
+    <child link="Pi_pannel"/>
+  </joint>
+
+  <link name="pi_board" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.075 0.095 0.005"/>
+      </geometry>
+      <material name="pi_green"/>
+    </visual>
+  </link>
+  <joint name="pi_board_joint" type="fixed">
+    <origin xyz="-0.06 0 0.005"/>
+    <parent link="Pi_pannel"/>
+    <child link="pi_board"/>
+  </joint>
+
+  <link name="base_imu_link" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.025 0.018 0.002"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="pi_pannel_to_IMU" type="fixed">
+    <origin xyz="0 0 0.002"/>
+    <parent link="Pi_pannel"/>
+    <child link="base_imu_link"/>
+  </joint>
+
+  <link name="white_E_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.002"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+  <joint name="Pi_pannel_to_white_E_pillar" type="fixed">
+    <origin xyz="0.085 0 0.026"/>
+    <parent link="Pi_pannel"/>
+    <child link="white_E_pillar"/>
+  </joint>
+  <link name="white_F_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.002"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+  <joint name="Pi_pannel_to_white_F_pillar" type="fixed">
+    <origin xyz="0 0.077 0.026"/>
+    <parent link="Pi_pannel"/>
+    <child link="white_F_pillar"/>
+  </joint>
+  <link name="white_G_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.002"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+  </link>
+  <joint name="Pi_pannel_to_white_G_pillar" type="fixed">
+    <origin xyz="0 -0.077 0.026"/>
+    <parent link="Pi_pannel"/>
+    <child link="white_G_pillar"/>
+  </joint>
+
+  <link name="Lidar_pannel" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.0015" radius="0.085"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="lidar_pannel_to_pi_pannel" type="fixed">
+    <origin xyz="0 0 0.05"/>
+    <parent link="Pi_pannel"/>
+    <child link="Lidar_pannel"/>
+  </joint>
+
+  <!--<link name="laser" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.042" radius="0.038"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="lidar_to_pannel" type="fixed">
+    <origin xyz="0 0 0.021"/>
+    <parent link="Lidar_pannel"/>
+    <child link="laser"/>
+  </joint>-->
+
+  <link name="blue_A_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.025 0.008 0.16"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="B_pannel_to_blue_A" type="fixed">
+    <origin rpy="0 0 -1.0471" xyz="0.065 -0.113 0.0815"/>
+    <parent link="B_pannel"/>
+    <child link="blue_A_pillar"/>
+  </joint>
+  <link name="blue_B_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.025 0.008 0.16"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="B_pannel_to_blue_B" type="fixed">
+    <origin rpy="0 0 1.0471" xyz="0.065 0.113 0.0815"/>
+    <parent link="B_pannel"/>
+    <child link="blue_B_pillar"/>
+  </joint>
+  <link name="blue_C_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.025 0.008 0.16"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="B_pannel_to_blue_C" type="fixed">
+    <origin xyz="-0.14 0 0.0815"/>
+    <parent link="B_pannel"/>
+    <child link="blue_C_pillar"/>
+  </joint>
+
+  <link name="left_blue_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.025 0.025 0.002"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="left_blue_pillar_joint" type="fixed">
+    <origin xyz="0 0.0165 0.025"/>
+    <parent link="blue_C_pillar"/>
+    <child link="left_blue_pillar"/>
+  </joint>
+  <link name="left_blue_A_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.04 0.01 0.003"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="left_blue_A_joint" type="fixed">
+    <origin rpy="0 0 0.611" xyz="0.017 0.013 -0.003"/>
+    <parent link="left_blue_pillar"/>
+    <child link="left_blue_A_pillar"/>
+  </joint>
+  <link name="left_blue_B_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.045 0.01 0.003"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="left_blue_B_joint" type="fixed">
+    <origin rpy="0 0 -0.851" xyz="0.032 -0.015 0.0"/>
+    <parent link="left_blue_A_pillar"/>
+    <child link="left_blue_B_pillar"/>
+  </joint>
+
+
+  <link name="right_blue_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.025 0.025 0.002"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="right_blue_pillar_joint" type="fixed">
+    <origin xyz="0 -0.0165 0.025"/>
+    <parent link="blue_C_pillar"/>
+    <child link="right_blue_pillar"/>
+  </joint>
+  <link name="right_blue_A_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.04 0.01 0.003"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="right_blue_A_joint" type="fixed">
+    <origin rpy="0 0 -0.611" xyz="0.017 -0.013 -0.003"/>
+    <parent link="right_blue_pillar"/>
+    <child link="right_blue_A_pillar"/>
+  </joint>
+  <link name="right_blue_B_pillar" type="fixed">
+    <visual>
+      <geometry>
+        <box size="0.045 0.01 0.003"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <joint name="right_blue_B_joint" type="fixed">
+    <origin rpy="0 0 0.851" xyz="0.032 0.015 0.0"/>
+    <parent link="right_blue_A_pillar"/>
+    <child link="right_blue_B_pillar"/>
+  </joint>
+
+  <link name="C_pannel" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.004" radius="0.17"/>
+      </geometry>
+      <material name="panel_color"/>
+    </visual>
+  </link>
+  <joint name="base_to_C_pannel" type="fixed">
+    <origin xyz="0 0 0.213"/>
+    <parent link="base_link"/>
+    <child link="C_pannel"/>
+  </joint>
+
+  <link name="laser_frame" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.042" radius="0.038"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="lidar_to_pannel" type="fixed">
+    <origin rpy="0 0 3.1415927" xyz="0 0 0.021"/>
+    <parent link="C_pannel"/>
+    <child link="laser_frame"/>
+  </joint>
+
+  <link name="alarm_base" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.055" radius="0.01"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="C_pannel_to_alarmBase" type="fixed">
+    <origin xyz="-0.155 0 0.029"/>
+    <parent link="C_pannel"/>
+    <child link="alarm_base"/>
+  </joint>
+  <link name="alarm_light" type="fixed">
+    <visual>
+      <geometry>
+        <cylinder length="0.008" radius="0.014"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+  <joint name="alarm_base_to_alarmLight" type="fixed">
+    <origin xyz="0 0 0.03"/>
+    <parent link="alarm_base"/>
+    <child link="alarm_light"/>
+  </joint>
+
+
+</robot>
+

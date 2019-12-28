@@ -1,0 +1,19 @@
+<launch>
+
+	<arg name="gui" default="False" />
+	<param name="robot_description" textfile="$(find pf_localization)/urdf/three_wheels_robot.urdf" />
+	<param name="use_gui" value="$(arg gui)"/>
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+    <!--<node pkg="tf" type="static_transform_publisher" name="map_baselink_broadcaster" args="0 0 0 0 0 0 /map /base_link 100" />-->
+
+    <!-- Run rviz to display -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pf_localization)/rviz/localization.rviz"/>
+
+    <!-- Run the localization node -->
+    <node name="pf_localization" pkg="pf_localization"  type="localization_node" output="screen" >
+        <param name="package_path_param" type="string" value="/home/wsy/catkin_ws/src/" />
+    </node>
+
+</launch>
