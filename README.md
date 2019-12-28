@@ -3,8 +3,8 @@
 
 ---
 ## Task Description
-​      The goal of this homework is to become familiar with robot localization and particle filtering.You will be implementing a global localization for a lost robot (global meaning that you do not know the initial pose of the robot). You may implement this using any programming language (there is no real-time-ness requirement).Feel free to utilize any techniques that we have discussed in class,as well as extension discussed in Probabilistic Robotics or elsewhere.In addition to the readings for lecture, Chapters 5 and 6 of Probabilistic Robotics may be helpful for this assignment.
-​      Your lost robot is operating in a building with nothing but odometry and a laser range finder.Fortunately, you have a map of and a deep understanding of particle filtering to help it localize.The data directory that you received with this handout has the following files:
+　　　The goal of this homework is to become familiar with robot localization and particle filtering.You will be implementing a global localization for a lost robot (global meaning that you do not know the initial pose of the robot). You may implement this using any programming language (there is no real-time-ness requirement).Feel free to utilize any techniques that we have discussed in class,as well as extension discussed in Probabilistic Robotics or elsewhere.In addition to the readings for lecture, Chapters 5 and 6 of Probabilistic Robotics may be helpful for this assignment.
+　　　Your lost robot is operating in a building with nothing but odometry and a laser range finder.Fortunately, you have a map of and a deep understanding of particle filtering to help it localize.The data directory that you received with this handout has the following files:
 
 + instruct.txt –Format description for the map and the data logs.
 + robotdataN.log.gz –Five data logs (odometry and laser data).
