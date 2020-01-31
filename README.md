@@ -1,11 +1,11 @@
 # The Homework of Probabilistic Robotics 
 
 ## Particle-Filter-Localization
- A Globle Localization of Mobile Robot Based on Particle Filter
+ A Globle Localization of Mobile Robot Based on Particle Filter (Monte Carlo Localization)
 
 ## Task Description
 　　The goal of this homework is to become familiar with robot localization and particle filtering.You will be implementing a global localization for a lost robot (global meaning that you do not know the initial pose of the robot). You may implement this using any programming language (there is no real-time-ness requirement).Feel free to utilize any techniques that we have discussed in class,as well as extension discussed in Probabilistic Robotics or elsewhere.In addition to the readings for lecture, Chapters 5 and 6 of Probabilistic Robotics may be helpful for this assignment.
-  
+
 　　Your lost robot is operating in a building with nothing but odometry and a laser range finder.Fortunately, you have a map of and a deep understanding of particle filtering to help it localize.The data directory that you received with this handout has the following files:
 
 + instruct.txt –Format description for the map and the data logs.
@@ -29,3 +29,11 @@
 + Modify the **value** of the parameter **package_path_param** in line 16 of launch/mcl_localization.launch to the path where the pf_localization package is located.  E.g : **value="/home/wsy/catkin_ws/src/"**
 
 + Run the Simulation : roslaunch pf_localization mcl_localization.launch
+
++ The result
+
+　　As shown in the following GIF, the pink arrows represent the set of particles, and the motion of black robot model represents the pose of the actual robot estimated by the MCL algorithm in the map.
+<div align=center> Monte Carlo Localization </div>
+<div align=center>
+	<img src="./img/MCL.gif" >
+</div>
