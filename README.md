@@ -35,5 +35,5 @@
 　　As shown in the following GIF, the pink arrows represent the set of particles, and the motion of black robot model represents the pose of the actual robot estimated by the MCL algorithm in the map.
 <div align=center> Monte Carlo Localization </div>
 <div align=center>
-	<img src="./img/MCL.gif" >
+	<img src="./img/MCL.gif" width = "700" height = "450" >
 </div>
