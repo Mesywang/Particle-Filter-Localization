@@ -23,6 +23,9 @@
 ```
   cd ${YOUR_WORKSPACE_PATH}/src
   git clone https://github.com/Mesywang/Particle-Filter-Localization.git
+```
++ Change the name of the folder that you just cloned to "pf_localization" , which matches the name of ROS package.
+```
   cd ../
   catkin_make
 ```
