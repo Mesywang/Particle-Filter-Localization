@@ -1,8 +1,5 @@
 # The Homework of Probabilistic Robotics 
 
-## Particle-Filter-Localization
- A Globle Localization of Mobile Robot Based on Particle Filter (Monte Carlo Localization)
-
 ## Task Description
 　　The goal of this homework is to become familiar with robot localization and particle filtering.You will be implementing a global localization for a lost robot (global meaning that you do not know the initial pose of the robot). You may implement this using any programming language (there is no real-time-ness requirement).Feel free to utilize any techniques that we have discussed in class,as well as extension discussed in Probabilistic Robotics or elsewhere.In addition to the readings for lecture, Chapters 5 and 6 of Probabilistic Robotics may be helpful for this assignment.
 
